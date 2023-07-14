@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>사이트 주소로 조회</title>
+</head>
+<body>
+<div class="container">
+  <div>
+    <h2>사업자 조회 페이지 - 사업자등록번호로 조회</h2>
+
+    <p>사업자 휴폐업여부를 조회할 수 있는 페이지입니다. <br>
+      확인하고 싶은 사업자의 등록번호를 입력하면 진위여부를 알려드립니다.
+    </p>
+    <form action="/bnoSearch" method="post">
+      <div class="form-group">
+        <input type="text" id="b_no" name="b_no" placeholder="사업자 등록번호를 입력하세요.">
+        <br>
+        <button type="submit">조회</button>
+      </div>
+    </form>
+    <p>
+      <a href="/">돌아가기</a>
+    </p>
+  </div>
+</div>
+</body>
+</html>
