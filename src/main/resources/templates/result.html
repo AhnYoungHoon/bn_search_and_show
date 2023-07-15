@@ -1,4 +1,5 @@
-<div>
+<html  layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
     <table class= "table">
         <tr>
             <th>사업자번호</th>
@@ -9,8 +10,5 @@
             <td><span th:text="${state}"></span></td>
         </tr>
     </table>
-
-    <p>
-        <a href="/">메인으로</a>
-    </p>
 </div>
+</html>

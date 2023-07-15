@@ -6,10 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 import java.util.List;
 
+@RequestMapping("/site")
 @Controller
 public class SiteController {
     private final SiteService siteService;
@@ -18,12 +20,12 @@ public class SiteController {
         this.siteService = siteService;
     }
 
-    @GetMapping("/siteSearch")
+    @GetMapping("/searchMain")
     public String siteSearchMain(){
         return "siteSearch";
     }
 
-    @PostMapping("/siteSearch")
+    @PostMapping("/search")
     public String siteSearch(SiteSearchForm siteSearchForm, Model model) throws IOException {
         String siteUrl = siteSearchForm.getSiteUrl();
         JSONObject jsonObject =  siteService.searchSiteUrl(siteUrl);

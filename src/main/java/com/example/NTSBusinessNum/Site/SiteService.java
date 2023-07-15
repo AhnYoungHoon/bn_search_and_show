@@ -33,13 +33,21 @@ public class SiteService {
             }
         }
         if(b_no.length()!=10){ // XXX-XX-XXXXX 형태인 경우
+            System.out.println("a");
             contents = document.select("._3fpUfPAXM5");
+
             for(Element content : contents){
+                System.out.println("b");
                 if (String.valueOf(content).length()==53) {
                     System.out.println(content.select("._3fpUfPAXM5"));
                     System.out.println(String.valueOf(content.select("._3fpUfPAXM5")).length());
                     str = String.valueOf(content.select("._3fpUfPAXM5"));
                     b_no = str.substring(36,39) + str.substring(40,42) + str.substring(43,48);
+                } else if (String.valueOf(content).length()==51) { // XXXXXXXXXX인데 css class가 _3fpUfPAXM5인 경우 (현재 안됨)
+                    System.out.println(content.select("._3fpUfPAXM5"));
+                    System.out.println(String.valueOf(content.select("._3fpUfPAXM5")).length());
+                    str = String.valueOf(content.select("._3fpUfPAXM5"));
+                    b_no = str.substring(36,46);
                 }
             }
         }
