@@ -1,5 +1,8 @@
 package com.example.NTSBusinessNum.Bno;
 
+import com.example.NTSBusinessNum.Site.Site;
+import com.example.NTSBusinessNum.Site.SiteRepository;
+import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -7,12 +10,27 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 
+@RequiredArgsConstructor //리포지터리 왜 초기화 안하냐는 오류 해결
 @Service
 public class BnoService {
+    private final SiteRepository siteRepository;
+
+
     public JSONObject searchBno(String b_no) throws IOException {
+        Site site = new Site();
+
+
         JSONObject jsonObject = new JSONObject();
         String state = searchBusinessNumber(b_no);
+
+        site.setBusinessNum(b_no);
+        site.setState(state);
+        site.setSearchDate(LocalDateTime.now());
+        site.setUrl("사업자번호로만 검색");
+        siteRepository.save(site);
+
         jsonObject.append("businessNumber", b_no);
         jsonObject.append("state", state);
 

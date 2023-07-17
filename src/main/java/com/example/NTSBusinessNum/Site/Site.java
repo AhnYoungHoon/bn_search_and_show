@@ -8,11 +8,11 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+
 @Getter
 @Setter
+@Entity
 @ToString
-@Builder
 public class Site {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +28,5 @@ public class Site {
     private String state;
 
     private LocalDateTime searchDate;
+
 }

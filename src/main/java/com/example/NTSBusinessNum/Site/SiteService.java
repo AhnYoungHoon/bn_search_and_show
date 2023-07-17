@@ -1,5 +1,6 @@
 package com.example.NTSBusinessNum.Site;
 
+import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -11,15 +12,21 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class SiteService {
+
+    private final SiteRepository siteRepository;
+
 
     public JSONObject searchSiteUrl(String siteUrl) throws IOException {
         List<Site> siteList = new ArrayList<>();
         Document document = Jsoup.connect(siteUrl).get();
+        Site site = new Site();
 
         Elements contents = document.select("._2jA5rc-8oC"); // XXXXXXXXXX인 경우
         String str = "";
@@ -53,10 +60,16 @@ public class SiteService {
         }
         String state = searchBusinessNumber(b_no);
         System.out.println(b_no+" "+state);
+        site.setUrl(siteUrl);
+        site.setBusinessNum(b_no);
+        site.setState(state);
+        site.setSearchDate(LocalDateTime.now());
+        siteRepository.save(site);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.append("businessNumber", b_no);
         jsonObject.append("state", state);
+
 
 
         return jsonObject;
