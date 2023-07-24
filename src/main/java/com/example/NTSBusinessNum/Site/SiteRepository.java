@@ -2,6 +2,8 @@ package com.example.NTSBusinessNum.Site;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SiteRepository extends JpaRepository<Site, Integer> {
+import java.util.Optional;
 
+public interface SiteRepository extends JpaRepository<Site, Integer> {
+    Optional<Site> findByBusinessNum(String businessNum);
 }

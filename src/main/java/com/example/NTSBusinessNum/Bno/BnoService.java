@@ -11,6 +11,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RequiredArgsConstructor //리포지터리 왜 초기화 안하냐는 오류 해결
 @Service
@@ -29,12 +30,22 @@ public class BnoService {
         site.setState(state);
         site.setSearchDate(LocalDateTime.now());
         site.setUrl("사업자번호로만 검색");
-        siteRepository.save(site);
+        validateDuplicateBno(site); // 이미 DB에 존재하는 사업자인 경우엔 DB에 저장 X
 
         jsonObject.append("businessNumber", b_no);
         jsonObject.append("state", state);
 
         return jsonObject;
+    }
+
+    private void validateDuplicateBno(Site site){
+        siteRepository.findByBusinessNum(site.getBusinessNum())
+                .ifPresentOrElse(
+                        m->{
+                            System.out.println("이미 디비에 존재");
+                        },
+                        () -> { siteRepository.save(site);
+                            System.out.println("신규 데이터");});
     }
 
     public String searchBusinessNumber(String b_no){

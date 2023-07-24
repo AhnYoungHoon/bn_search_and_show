@@ -40,11 +40,9 @@ public class SiteService {
             }
         }
         if(b_no.length()!=10){ // XXX-XX-XXXXX 형태인 경우
-            System.out.println("a");
             contents = document.select("._3fpUfPAXM5");
 
             for(Element content : contents){
-                System.out.println("b");
                 if (String.valueOf(content).length()==53) {
                     System.out.println(content.select("._3fpUfPAXM5"));
                     System.out.println(String.valueOf(content.select("._3fpUfPAXM5")).length());
@@ -64,8 +62,7 @@ public class SiteService {
         site.setBusinessNum(b_no);
         site.setState(state);
         site.setSearchDate(LocalDateTime.now());
-        siteRepository.save(site);
-
+        validateDuplicateBno(site);
         JSONObject jsonObject = new JSONObject();
         jsonObject.append("businessNumber", b_no);
         jsonObject.append("state", state);
@@ -73,6 +70,16 @@ public class SiteService {
 
 
         return jsonObject;
+    }
+
+    private void validateDuplicateBno(Site site){
+        siteRepository.findByBusinessNum(site.getBusinessNum())
+                .ifPresentOrElse(
+                        m->{
+                            System.out.println("이미 디비에 존재");
+                        },
+                        () -> { siteRepository.save(site);
+                            System.out.println("신규 데이터");});
     }
 
     public String searchBusinessNumber(String b_no){
