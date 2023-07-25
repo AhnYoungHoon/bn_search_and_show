@@ -10,11 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500&family=Nanum+Brush+Script&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="http://localhost:8080/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://localhost:8080/img/favicon.ico" type="image/x-icon">
     <title>Det:B!</title>
 </head>
 <body>
 <!-- 네비게이션바 -->
 <nav th:replace="~{navbar :: navbarFragment}"></nav>
+<a href="/"><img src="http://localhost:8080/img/data.png" width="auto" height="250"></a>
+
 <!-- 기본 템플릿 안에 삽입될 내용 Start -->
 <th:block layout:fragment="content"></th:block>
 <!-- 기본 템플릿 안에 삽입될 내용 End -->
