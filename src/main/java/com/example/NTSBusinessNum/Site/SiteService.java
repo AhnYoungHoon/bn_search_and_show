@@ -24,6 +24,7 @@ public class SiteService {
 
 
     public JSONObject searchSiteUrl(String siteUrl) throws IOException {
+
         List<Site> siteList = new ArrayList<>();
         Document document = Jsoup.connect(siteUrl).get();
         Site site = new Site();

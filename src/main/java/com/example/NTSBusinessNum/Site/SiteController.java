@@ -27,7 +27,9 @@ public class SiteController {
 
     @PostMapping("/search")
     public String siteSearch(SiteSearchForm siteSearchForm, Model model) throws IOException {
+
         String siteUrl = siteSearchForm.getSiteUrl();
+
         JSONObject jsonObject =  siteService.searchSiteUrl(siteUrl);
 
         model.addAttribute("businessNumber", jsonObject.get("businessNumber"));

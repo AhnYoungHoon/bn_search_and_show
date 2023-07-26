@@ -23,6 +23,12 @@ public class SecurityConfig {
                 .csrf().ignoringRequestMatchers(
                         new AntPathRequestMatcher("/h2-console/**"))
                 .and()
+                .csrf().ignoringRequestMatchers(
+                        new AntPathRequestMatcher("/site/**"))
+                .and()
+                .csrf().ignoringRequestMatchers(
+                        new AntPathRequestMatcher("/bno/**"))
+                .and()
                 .headers()
                 .addHeaderWriter(new XFrameOptionsHeaderWriter(
                         XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
