@@ -36,12 +36,5 @@ public class SiteController {
         return "result";
     }
 
-//    @GetMapping("/site")
-//    public String site(Model model) throws Exception{
-//        List<Site> siteList = SiteService.getDatas();
-//        model.addAttribute("site", siteList);
-//
-//        return "result";
-//    }
 
 }

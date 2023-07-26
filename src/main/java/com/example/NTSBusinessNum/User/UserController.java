@@ -50,4 +50,9 @@ public class UserController {
     public String login() {
         return "login_form";
     }
+
+    @GetMapping("/mypage")
+    public String mypage(){
+        return "mypage";
+    }
 }
