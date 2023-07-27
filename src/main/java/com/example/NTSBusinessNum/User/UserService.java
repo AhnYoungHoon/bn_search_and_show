@@ -4,12 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final UserToSiteRepository userToSiteRepository;
     private final PasswordEncoder passwordEncoder;
 
     public SiteUser create(String username, String email, String password){
@@ -20,5 +21,13 @@ public class UserService {
         this.userRepository.save(user);
         return user;
     }
+
+//    public Long findUserId(String username){
+//        Optional<SiteUser> user = userRepository.findByusername(username);
+//        Long userId = user.get().getId();
+//        System.out.println(userId);
+//
+//        return userId;
+//    }
 
 }

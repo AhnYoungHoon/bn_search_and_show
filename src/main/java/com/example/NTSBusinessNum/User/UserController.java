@@ -49,13 +49,33 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String loginPage() {
         return "login_form";
     }
 
-    @GetMapping("/mypage")
+//    @PostMapping("/login")
+//    public String login(Model model, UserLoginForm userLoginForm){
+//        System.out.println("aaa");
+//        String username = userLoginForm.getUsername();
+//        Long userId = userService.findUserId(username);
+//
+//        model.addAttribute("userId", userId);
+//        return "/";
+//    }
+
+    @GetMapping("/mypage/{userId}")
     public String mypage(){
 
         return "mypage";
+    }
+
+    @GetMapping("/reportBusiness")
+    public String reportBusiness(){
+        return "reportBusiness";
+    }
+
+    @GetMapping("/informDamage")
+    public String informDamage(){
+        return "informDamage";
     }
 }
