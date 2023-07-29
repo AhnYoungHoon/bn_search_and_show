@@ -75,7 +75,7 @@ public class UserController {
     }
 
     @PostMapping("/mypage/reportBusiness")
-    public String reportBusinessAction(@Validated MypageSiteReportForm mypageSiteReportForm, Model model){
+    public String reportBusinessAction(@Validated MypageSiteReportForm mypageSiteReportForm){
         String username = mypageSiteReportForm.getUsername();
         String url = mypageSiteReportForm.getUrl();
         String businessNum = mypageSiteReportForm.getBusinessNum();
@@ -87,5 +87,16 @@ public class UserController {
     @GetMapping("/mypage/informDamage")
     public String informDamage(){
         return "informDamage";
+    }
+
+    @PostMapping("/mypage/informDamage")
+    public String informDamageAction(@Validated MypageDamageForm mypageDamageForm){
+        String username = mypageDamageForm.getUsername();
+        String url = mypageDamageForm.getUrl();
+        String businessNum = mypageDamageForm.getBusinessNum();
+        String content = mypageDamageForm.getContent();
+        userService.inform(username, url, businessNum, content);
+
+        return "/mypage";
     }
 }

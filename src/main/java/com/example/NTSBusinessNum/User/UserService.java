@@ -12,6 +12,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserToSiteRepository userToSiteRepository;
     private final ReportedSiteRepository reportedSiteRepository;
+    private final DamageRepository damageRepository;
     private final PasswordEncoder passwordEncoder;
 
 
@@ -30,6 +31,15 @@ public class UserService {
         reportedSite.setBusinessNum(businessNum);
         reportedSite.setUrl(url);
         this.reportedSiteRepository.save(reportedSite);
+    }
+
+    public void inform(String username, String url, String businessNum, String content){
+        Damage damage = new Damage();
+        damage.setUsername(username);
+        damage.setUrl(url);
+        damage.setBusinessNum(businessNum);
+        damage.setContent(content);
+        this.damageRepository.save(damage);
     }
 
 //    public Long findUserId(String username){

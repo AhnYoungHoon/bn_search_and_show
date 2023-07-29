@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-피해사실 신고
-</body>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container">
+    <h5 class="my-3 border-bottom pb-2">피해 사실 신고하기</h5>
+    <form action="/user/mypage/informDamage" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <div class="mb-3">
+            <label for="username" class="form-label">아이디</label>
+            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요." size=28>
+        </div>
+        <div class="mb-3">
+            <label for="businessNum" class="form-label">휴폐업 사업자 등록번호</label>
+            <input type="text" id="businessNum" name="businessNum" placeholder="사업자 번호를 입력하세요." size=28>
+        </div>
+        <div class="mb-3">
+            <label for="url" class="form-label">휴폐업 사이트 링크</label>
+            <input type="text" id="url" name="url" placeholder="사이트 링크를 입력하세요." size=28>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">내용</label>
+            <textarea id="content" name="content" class="form-control" rows="10"></textarea>
+        </div>
+        <input type="submit" value="저장하기" class="btn btn-primary my-2">
+    </form>
+</div>
 </html>
