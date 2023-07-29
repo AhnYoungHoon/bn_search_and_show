@@ -63,18 +63,28 @@ public class UserController {
 //        return "/";
 //    }
 
-    @GetMapping("/mypage/{userId}")
+    @GetMapping("/mypage")
     public String mypage(){
 
         return "mypage";
     }
 
-    @GetMapping("/reportBusiness")
+    @GetMapping("/mypage/reportBusiness")
     public String reportBusiness(){
         return "reportBusiness";
     }
 
-    @GetMapping("/informDamage")
+    @PostMapping("/mypage/reportBusiness")
+    public String reportBusinessAction(@Validated MypageSiteReportForm mypageSiteReportForm, Model model){
+        String username = mypageSiteReportForm.getUsername();
+        String url = mypageSiteReportForm.getUrl();
+        String businessNum = mypageSiteReportForm.getBusinessNum();
+        userService.report(username, url, businessNum);
+
+        return "/mypage";
+    }
+
+    @GetMapping("/mypage/informDamage")
     public String informDamage(){
         return "informDamage";
     }

@@ -11,7 +11,9 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final UserToSiteRepository userToSiteRepository;
+    private final ReportedSiteRepository reportedSiteRepository;
     private final PasswordEncoder passwordEncoder;
+
 
     public SiteUser create(String username, String email, String password){
         SiteUser user = new SiteUser();
@@ -20,6 +22,14 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(password));
         this.userRepository.save(user);
         return user;
+    }
+
+    public void report(String username, String url, String businessNum){
+        ReportedSite reportedSite = new ReportedSite();
+        reportedSite.setUsername(username);
+        reportedSite.setBusinessNum(businessNum);
+        reportedSite.setUrl(url);
+        this.reportedSiteRepository.save(reportedSite);
     }
 
 //    public Long findUserId(String username){
